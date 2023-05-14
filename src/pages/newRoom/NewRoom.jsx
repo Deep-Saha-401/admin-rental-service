@@ -7,13 +7,14 @@ import { roomInputs } from "../../formSource";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from '../../helper';
 
 const NewRoom = () => {
   const [info, setInfo] = useState({});
   const [hotelId, setHotelId] = useState(undefined);
   const [rooms, setRooms] = useState([]);
   const navigate = useNavigate();
-  const { data, loading, error } = useFetch("/hotels");
+  const { data, loading, error } = useFetch(`${BASE_URL}/hotels`);
 
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -23,9 +24,9 @@ const NewRoom = () => {
     e.preventDefault();
     const roomNumbers = rooms.split(",").map((room) => ({ number: room }));
     try {
-      await axios.post(`/rooms/${hotelId}`, { ...info, roomNumbers });
+      await axios.post(`${BASE_URL}/rooms/${hotelId}`, { ...info, roomNumbers });
 
-      navigate(window.location.href = 'https://client-rental-service-deep-saha-401.onrender.com/');
+      navigate(window.location.href = 'https://client-rental-service.netlify.app/');
     } catch (err) {
       console.log(err);
     }
