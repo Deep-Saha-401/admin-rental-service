@@ -21,7 +21,7 @@ const NewHotel = () => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-
+  const path ='https://api-rental-service-deep-saha-401.onrender.com/api/hotels'
   
   console.log(files)
 
@@ -49,7 +49,7 @@ const NewHotel = () => {
         photos: list,
       };
 
-      await axios.post("/hotels", newhotel);
+      await axios.post(path, newhotel);
       navigate('/rooms/new');
     } catch (err) {console.log(err)}
   };
