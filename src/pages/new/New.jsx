@@ -14,7 +14,7 @@ const New = ({ inputs, title }) => {
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
-
+  const path ='https://api-rental-service-deep-saha-401.onrender.com/api/auth/register'
   const handleClick = async (e) => {
     e.preventDefault();
     const data = new FormData();
@@ -33,8 +33,8 @@ const New = ({ inputs, title }) => {
         img: url,
       };
 
-      await axios.post("/auth/register", newUser);
-      navigate(window.location.href = 'https://client-rental-service-deep-saha-401.onrender.com/');
+      await axios.post(path, newUser);
+      navigate(window.location.href = 'https://client-rental-service.netlify.app/');
 
     } catch (err) {
       console.log(err);
